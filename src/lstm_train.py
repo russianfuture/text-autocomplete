@@ -56,7 +56,7 @@ optimizer = optim.Adam(model.parameters())
 train_losses = []
 val_losses = []
 
-epochs = 10
+epochs = 1
 for epoch in range(epochs):
     train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
     val_loss = eval_epoch(model, val_loader, criterion, device)
