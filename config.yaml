@@ -46,7 +46,7 @@ model:
     num_return_sequences: 1
 
 training:
-  epochs: 2
+  epochs: 10
   optimizer:
     type: Adam
     params:
