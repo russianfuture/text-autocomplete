@@ -4,7 +4,7 @@ import os
 from transformers import AutoTokenizer
 from rouge_score import rouge_scorer
 
-tokenizer_lstm = AutoTokenizer.from_pretrained("DeepPavlov/rubert-base-cased")
+tokenizer_lstm = AutoTokenizer.from_pretrained("bert-base-uncased") #DeepPavlov/rubert-base-cased
 
 def clean_text(text):
     text = text.lower()
@@ -27,7 +27,7 @@ def process_file_and_save(input_path):
     os.makedirs('data', exist_ok=True)
     df_raw = pd.DataFrame({'text': clean_texts})
     df_raw.to_csv('/home/assistant/text-autocomplete/data/raw_dataset.csv', index=False, encoding='utf-8')
-    print("Raw dataset saved to data/raw_dataset.csv")
+    print("Исходный набор данных сохранен в data/raw_dataset.csv")
 
     samples = []
     for text in clean_texts:
@@ -41,7 +41,7 @@ def process_file_and_save(input_path):
     df_token['X_str'] = df_token['X'].apply(lambda x: ' '.join(x))
     df_token['Y_str'] = df_token['Y'].apply(lambda x: ' '.join(x))
     df_token[['X_str','Y_str']].to_csv('/home/assistant/text-autocomplete/data/dataset_processed.csv', index=False, encoding='utf-8')
-    print("Tokenized dataset saved to data/dataset_processed.csv")
+    print("Токенизированный набор данных сохранен в data/dataset_processed.csv")
     return samples
 
 def tokens_to_indices(samples, vocab):
